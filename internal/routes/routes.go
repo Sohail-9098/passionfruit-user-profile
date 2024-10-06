@@ -6,7 +6,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-func SetupRoutes(r *gin.Engine, client *mongo.Client) {
+func SetupServer(r *gin.Engine, client *mongo.Client) {
 	r.POST("/profiles", handleRequest(controllers.CreateProfile, client))
 	r.GET("/profiles/:id", handleRequest(controllers.GetProfile, client))
 	r.PUT("/profiles/:id", handleRequest(controllers.UpdateProfile, client))
