@@ -1,0 +1,9 @@
+{"level":"info","msg":"database setup initiated","time":"2024-10-06T19:03:24+02:00","timestamp":"2024-10-06T19:03:24.996624+02:00"}
+{"level":"info","msg":"database setup completed","time":"2024-10-06T19:03:25+02:00","timestamp":"2024-10-06T19:03:25.011749+02:00"}
+{"level":"info","msg":"server setup initiated","time":"2024-10-06T19:03:25+02:00","timestamp":"2024-10-06T19:03:25.011842+02:00"}
+{"level":"info","msg":"database setup completed","time":"2024-10-06T19:03:25+02:00","timestamp":"2024-10-06T19:03:25.012614+02:00"}
+{"level":"error","msg":"json: cannot unmarshal string into Go struct field Profile.photos of type []string","time":"2024-10-06T19:03:36+02:00","timestamp":"2024-10-06T19:03:36.52452+02:00"}
+{"level":"error","msg":"json: cannot unmarshal string into Go struct field Profile.photos of type []string","time":"2024-10-06T19:03:56+02:00","timestamp":"2024-10-06T19:03:56.233492+02:00"}
+{"level":"error","msg":"json: cannot unmarshal string into Go struct field Profile.photos of type []string","time":"2024-10-06T19:03:56+02:00","timestamp":"2024-10-06T19:03:56.455791+02:00"}
+{"level":"error","msg":"json: cannot unmarshal string into Go struct field Profile.photos of type []string","time":"2024-10-06T19:03:56+02:00","timestamp":"2024-10-06T19:03:56.671619+02:00"}
+{"level":"error","msg":"json: cannot unmarshal string into Go struct field Profile.photos of type []string","time":"2024-10-06T19:03:57+02:00","timestamp":"2024-10-06T19:03:57.153122+02:00"}
