@@ -2,9 +2,9 @@ package models
 
 type Profile struct {
 	ID          string      `json:"id" bson:"_id,omitempty"`
-	Name        string      `json:"name" bson:"name"`
+	Name        string      `json:"name" bson:"name" validation:"required"`
 	Bio         string      `json:"bio" bson:"bio"`
-	Photos      string      `json:"photos" bson:"photos"`
+	PhotosUrl   []string    `json:"photos" bson:"photos" validation:"url"`
 	Preferences Preferences `json:"preferences" bson:"preferences"`
 }
 

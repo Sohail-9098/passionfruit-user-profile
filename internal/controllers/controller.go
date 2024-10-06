@@ -1,10 +1,11 @@
 package controllers
 
 import (
-	"context"
+	"log"
 	"net/http"
 
 	"github.com/Sohail-9098/passionfruit-user-profile/internal/models"
+	"github.com/Sohail-9098/passionfruit-user-profile/internal/services"
 	"github.com/gin-gonic/gin"
 	"go.mongodb.org/mongo-driver/mongo"
 )
@@ -12,11 +13,12 @@ import (
 func CreateProfile(c *gin.Context, client *mongo.Client) {
 	var profile models.Profile
 	if err := c.ShouldBindJSON(&profile); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		log.Println(err.Error())
+		c.JSON(http.StatusBadRequest, gin.H{"error": "invalid request payload"})
 		return
 	}
-	collection := client.Database("test").Collection("profiles")
-	if _, err := collection.InsertOne(context.TODO(), profile); err != nil {
+	if err := services.AddProfile(profile, client); err != nil {
+		log.Println(err.Error())
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to create profile"})
 		return
 	}

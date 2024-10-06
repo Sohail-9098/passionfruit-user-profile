@@ -6,14 +6,14 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-func SetupServer(r *gin.Engine, client *mongo.Client) {
-	r.POST("/profiles", handleRequest(controllers.CreateProfile, client))
-	r.GET("/profiles/:id", handleRequest(controllers.GetProfile, client))
-	r.PUT("/profiles/:id", handleRequest(controllers.UpdateProfile, client))
-	r.GET("/profiles/search", handleRequest(controllers.SearchProfiles, client))
+func SetupServer(r *gin.Engine, db *mongo.Client) {
+	r.POST("/profiles", handleRequest(controllers.CreateProfile, db))
+	r.GET("/profiles/:id", handleRequest(controllers.GetProfile, db))
+	r.PUT("/profiles/:id", handleRequest(controllers.UpdateProfile, db))
+	r.GET("/profiles/search", handleRequest(controllers.SearchProfiles, db))
 }
 
-func handleRequest(handler func(c *gin.Context, i *mongo.Client), client *mongo.Client) func(c *gin.Context) {
+func handleRequest(handler func(c *gin.Context, i *mongo.Client), client *mongo.Client) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		handler(c, client)
 	}
