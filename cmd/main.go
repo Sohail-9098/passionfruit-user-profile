@@ -12,8 +12,8 @@ const (
 )
 
 func main() {
-	database.Connect(MONGODB_URI)
+	client := database.Connect(MONGODB_URI)
 	r := gin.Default()
-	routes.SetupRoutes(r)
+	routes.SetupRoutes(r, client)
 	r.Run(PORT)
 }

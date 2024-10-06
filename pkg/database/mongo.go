@@ -8,16 +8,14 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-var Client *mongo.Client
-
-func Connect(uri string) {
+func Connect(uri string) *mongo.Client {
 	clientOptions := options.Client().ApplyURI(uri)
-	var err error
-	Client, err = mongo.Connect(context.TODO(), clientOptions)
+	client, err := mongo.Connect(context.TODO(), clientOptions)
 	if err != nil {
 		log.Fatal(err)
 	}
-	if err = Client.Ping(context.TODO(), nil); err != nil {
+	if err = client.Ping(context.TODO(), nil); err != nil {
 		log.Fatal(err)
 	}
+	return client
 }
