@@ -10,7 +10,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-func AddProfile(client *mongo.Client, profile models.Profile) (string, error) {
+func AddProfile(client *mongo.Client, profile *models.Profile) (string, error) {
 	collection := client.Database(config.DatabaseName).Collection(config.CollectionName)
 	result, err := collection.InsertOne(context.TODO(), profile)
 	if err != nil {
@@ -20,7 +20,7 @@ func AddProfile(client *mongo.Client, profile models.Profile) (string, error) {
 	return id, nil
 }
 
-func UpdateProfile(client *mongo.Client, profile models.Profile, id string) error {
+func UpdateProfile(client *mongo.Client, profile *models.Profile, id string) error {
 	collection := client.Database(config.DatabaseName).Collection(config.CollectionName)
 	objectID, err := primitive.ObjectIDFromHex(id)
 	if err != nil {
@@ -30,5 +30,6 @@ func UpdateProfile(client *mongo.Client, profile models.Profile, id string) erro
 	if _, err := collection.ReplaceOne(context.TODO(), filter, profile); err != nil {
 		return err
 	}
+	profile.ID = objectID.Hex()
 	return nil
 }

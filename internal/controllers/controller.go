@@ -17,7 +17,7 @@ func CreateProfile(c *gin.Context, client *mongo.Client) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "invalid request payload"})
 		return
 	}
-	id, err := services.AddProfile(client, profile)
+	id, err := services.AddProfile(client, &profile)
 	if err != nil {
 		logger.Log(logger.Error, err.Error())
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to create profile"})
@@ -34,7 +34,7 @@ func UpdateProfile(c *gin.Context, client *mongo.Client) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "invalid request payload"})
 		return
 	}
-	if err := services.UpdateProfile(client, profile, id); err != nil {
+	if err := services.UpdateProfile(client, &profile, id); err != nil {
 		logger.Log(logger.Error, err.Error())
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to update profile"})
 		return
