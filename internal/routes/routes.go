@@ -8,9 +8,7 @@ import (
 
 func SetupServer(r *gin.Engine, db *mongo.Client) {
 	r.POST("/profiles", handleRequest(controllers.CreateProfile, db))
-	r.GET("/profiles/:id", handleRequest(controllers.GetProfile, db))
 	r.PUT("/profiles/:id", handleRequest(controllers.UpdateProfile, db))
-	r.GET("/profiles/search", handleRequest(controllers.SearchProfiles, db))
 }
 
 func handleRequest(handler func(c *gin.Context, i *mongo.Client), client *mongo.Client) gin.HandlerFunc {
